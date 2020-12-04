@@ -52,7 +52,6 @@ for n in file_right:
 #reset counter and set starting total
 counter = 1
 total = trees_list[0]
-
 #loop through tree array and do some math
 for t in trees_list[1:]:
 	total = total * trees_list[counter]
