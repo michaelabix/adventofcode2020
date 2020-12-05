@@ -97,5 +97,4 @@ for location in seat_location:
 print "the highest seat number for part 1 is " + str(find_max())
 
 #part 2
-my_seat = find_seat()
-print "the seat number for part 2 is " + str(my_seat)
+print "the seat number for part 2 is " + str(find_seat())
