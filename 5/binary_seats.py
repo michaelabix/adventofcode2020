@@ -13,7 +13,7 @@ seat_location = open("puzzle_input", 'r').read().splitlines()
 
 #calculate seat ID
 def find_seatid(location):
-	if len(location) > 10:
+	if len(location) > length:
 		print "this is not a valid seat ID"
 	else:
 		#parse seat code
