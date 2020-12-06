@@ -51,13 +51,11 @@ def find_seatid(location):
 
 #find max seat number for part 1
 def find_max():
-	count = 0
 	max = 0
-	for n in row:
-		seatID = get_seatID(n,seat[count])
+	for i,n in enumerate(row):
+		seatID = get_seatID(n,seat[i])
 		if seatID > max:
 			max = seatID
-		count += 1
 	return max
 
 #do some math to calculate ID
@@ -67,11 +65,9 @@ def get_seatID(x,y):
 
 #locate seat for part 2
 def find_seat():
-	count = 0
 	seats = []
-	for n in row:
-		seats.append(get_seatID(n,seat[count]))
-		count += 1
+	for i,n in enumerate(row):
+		seats.append(get_seatID(n,seat[i]))
 	sorted_seats = sorted(seats)
 	previous_seat = 0
 	my_seat = 0
@@ -86,15 +82,22 @@ def find_seat():
 			previous_seat = s
 	return my_seat
 
+#set seating
+def set_seating():
+	for location in seat_location:
+                seating = find_seatid(location)
+                row.append(seating[0])
+                seat.append(seating[1])
 
-#call functions
-for location in seat_location:
-	seating = find_seatid(location)
-	row.append(seating[0])
-	seat.append(seating[1])
+def main():
 
-#part 1 results
-print "the highest seat number for part 1 is " + str(find_max())
+	set_seating()
+	
+	#part 1
+	print "the highest seat number for part 1 is " + str(find_max())
 
-#part 2
-print "the seat number for part 2 is " + str(find_seat())
+	#part 2
+	print "the seat number for part 2 is " + str(find_seat())
+
+if __name__ == "__main__":
+	main()
