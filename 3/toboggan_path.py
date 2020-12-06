@@ -26,15 +26,14 @@ print trees
 #part 2
 
 #initialize variables
-counter = 0
 trees_list = []
 
-#loop n items in slope requirements
-for n in file_right:
+#loop through items in slope requirements
+for i,n in enumerate(file_right):
 	line_length = len(file_puzzle_input[0]) - 1
-	line_pos = int(file_right[counter])
-	slope = int(file_right[counter])
-	skip = int(file_down[counter])
+	line_pos = int(file_right[i])
+	slope = int(file_right[i])
+	skip = int(file_down[i])
 	trees = 0
 	#loop through puzzle input and identify trees
 	for line in file_puzzle_input[skip::skip]:
@@ -47,15 +46,12 @@ for n in file_right:
 	#add tree total to array for each iteration of loop
 	if trees > 0:
 		trees_list.append(trees)	
-	counter += 1
 
-#reset counter and set starting total
-counter = 1
+#set starting total
 total = trees_list[0]
 #loop through tree array and do some math
-for t in trees_list[1:]:
-	total = total * trees_list[counter]
-	counter += 1
+for j,t in enumerate(trees_list[1:]):
+	total = total * trees_list[j+1]
 
 print "the total number of trees for part 2 is:"
 print total 
