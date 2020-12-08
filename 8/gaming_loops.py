@@ -2,12 +2,14 @@ file_puzzle_input = open("puzzle_input", 'r').read().splitlines()
 instructions = []
 accumulator = 0
 
+#define class attributes
 class instruction():
 	def __init__(self):
 		self.instruction = ""
 		self.num = 0
 		self.times_run = 0
 
+#string manipulation to split into object attributes
 def parse_input():
 	for f in file_puzzle_input:
 		new_instruction = instruction()
@@ -16,6 +18,7 @@ def parse_input():
 		new_instruction.num = int(temp[1])
 		instructions.append(new_instruction)
 		
+#loop through operations, check for infinite loops
 def operations():
 	global accumulator
 	i = 0
@@ -37,13 +40,14 @@ def operations():
 			i += 1
 	return loop
 
+#reset times_run for each object
 def reset():
 	global accumulator
-	global instructions
 	accumulator = 0
 	for i in range(len(instructions)):
 		instructions[i].times_run = 0
 
+#find wrong intruction & correct to not loop infinitely
 def fixed_operations():
 	for x,i in enumerate(instructions):
 		reset()
