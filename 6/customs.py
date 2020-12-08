@@ -11,10 +11,10 @@ def main():
 	lists.append("")
 	global total
 	for line in file_puzzle_input:
+		global num
 		if re.match('^$',line):
-			global num
-			num += 1
 			lists.append("")
+			num += 1
 		else:
 			lists[num] = lists[num] + line.strip() + ' '
 
