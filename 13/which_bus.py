@@ -18,7 +18,6 @@ def multiply(id,time):
 
 #find earliest timestamp
 def part2(busses):
-	n = 0
 	t = 0
 	inc = 1
 	for i,b in enumerate(busses):
