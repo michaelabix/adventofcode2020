@@ -1,9 +1,11 @@
 import re
 
+#set global variables
 file_puzzle_input = open("puzzle_input", 'r').read().split('\n\n')
 rules = {}
 tickets = []
 
+#create objects for rules and tickets
 class rule():
 	def __init__(self):
 		self.r1 = []
@@ -15,6 +17,7 @@ class ticket():
 		self.nums = []
 		self.not_valid = 0
 
+#parse input
 def parse():
 	temp_rules = file_puzzle_input[0].split('\n')
 	temp_my_ticket = file_puzzle_input[1].split('\n')[1:]
@@ -40,6 +43,7 @@ def parse():
 
 	return my_ticket
 
+#part 1
 def scanning_error_rate():
 	invalid = []
 	for t in tickets:
@@ -56,20 +60,34 @@ def scanning_error_rate():
 		total += int(i)
 	return total
 	
+#discover order and assign to rule object
 def find_field_order():
 	order = {}
+
+	#loop until all values are found
 	while len(order) != len(rules):
+
+		#loop through rules
 		for k in rules.keys():
+
+			#test if already found
 			if k in order.keys():
 				continue
 			else:
 				options = set()
+
+				#loop through tickets
 				for t in tickets:
+					
+					#test if valid
 					if t.not_valid == 1:
 						continue
 					else:
 						possibilities = set()
+
+						#loop through numbers in ticket
 						for i,n in enumerate(t.nums):
+							#test if in range
 							if (int(n) in range(int(rules[k].r1[0]), int(rules[k].r1[1]) + 1)) or (int(n) in range(int(rules[k].r2[0]), int(rules[k].r2[1]) + 1)):
 								if i not in order.values():
 									possibilities.add(i)
@@ -84,13 +102,13 @@ def find_field_order():
 						rules[k].field = o
 						order.update({k: o})		
 
+#part 2 answer
 def departure(ticket):
 	find_field_order()
 	total = 1
 	for k in rules.keys():
 		if re.match('^departure.*$',k):
-			multiply = rules[k].field
-			total *= int(ticket.nums[multiply])
+			total *= int(ticket.nums[rules[k].field])
 	return total
 	
 def main():
